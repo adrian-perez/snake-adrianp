@@ -29,6 +29,7 @@ function gameLoop(){
     gameDraw();
     snakeUpdate();
     snakeDraw();
+    foodDraw();
 }
    
    function gameDraw(){
@@ -41,7 +42,7 @@ function gameLoop(){
    function snakeInitialize() {
     snake = [];
     snakeLength = 5;
-    snakeSize = 100;
+    snakeSize = 20;
     
     for(var index = snakeLength - 1; index >= 0; index--){
         snake.push( {
@@ -70,8 +71,24 @@ function gameLoop(){
        snakeTail.x = snakeHeadX;
        snakeTail.y = snakeHeadY;
        snake.unshift(snakeTail);
-       
+   
    }
  
-   
-   
+   function foodInitialize(){
+       food = {
+           x: 0,
+           y: 0 
+       };
+       
+   }
+  
+  function foodDraw(){
+      context.fillStyle = "white";
+      context.fillRect(food.x, food.y, snakeSize, snakeSize); 
+      
+  }
+  
+  
+  
+  
+  
