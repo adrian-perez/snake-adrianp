@@ -10,8 +10,8 @@ var screenHeight;
 
 gameInitialize();
 snakeInitialize();
+foodInitialize();
 setInterval(gameLoop, 1000/30);
-//foodInitialize();
 
 function gameInitialize() {
 var canvas = document.getElementById("game-screen");
