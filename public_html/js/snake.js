@@ -1,3 +1,8 @@
+/* -------------------------------------------------------------------------- 
+ * Variables
+ * --------------------------------------------------------------------------
+ */
+
 var snake;
 var snakeLength;
 var snakeSize;
@@ -7,6 +12,10 @@ var food;
 var context;
 var screenWidth;
 var screenHeight;
+
+/* ---------------------------------------------------------------------------
+ * Executing Game Code 
+ */
 
 gameInitialize();
 snakeInitialize();
@@ -52,6 +61,7 @@ function gameLoop(){
        }
    
    }
+   
    function snakeDraw() {
        for(var index = 0; index < snake.length; index++) {
            context.fillStyle = "white";
@@ -62,8 +72,8 @@ function gameLoop(){
    
    function snakeUpdate() {
        
-       var snakeHeadX = [0].x;
-       var snakeHeadY = [0].y;
+       var snakeHeadX = snake[0].x;
+       var snakeHeadY = snake[0].y;
        
        snakeHeadX++;
        
