@@ -6,6 +6,7 @@
 var snake;
 var snakeLength;
 var snakeSize;
+var snakeDirection;
 
 var food;
 
@@ -14,13 +15,19 @@ var screenWidth;
 var screenHeight;
 
 /* ---------------------------------------------------------------------------
- * Executing Game Code 
+ * Executing Game Code
+ * --------------------------------------------------------------------------- 
  */
 
 gameInitialize();
 snakeInitialize();
 foodInitialize();
 setInterval(gameLoop, 1000/30);
+
+/* ---------------------------------------------------------------------------
+ * Game Functions
+ * ---------------------------------------------------------------------------
+ */
 
 function gameInitialize() {
 var canvas = document.getElementById("game-screen");
@@ -31,6 +38,8 @@ screenHeight = window.innerHeight;
 
 canvas.width = screenWidth;
 canvas.height = screenHeight;
+
+document.addEventListener("keydown", keyboardHandler);
 
 }
 
@@ -48,10 +57,16 @@ function gameLoop(){
        snakeDraw();
    }
    
+   /* ------------------------------------------------------------------------
+    * Snake Functions
+    * ------------------------------------------------------------------------
+    */
+   
    function snakeInitialize() {
     snake = [];
     snakeLength = 5;
     snakeSize = 20;
+    snakeDirection = "Down";
     
     for(var index = snakeLength - 1; index >= 0; index--){
         snake.push( {
@@ -75,7 +90,12 @@ function gameLoop(){
        var snakeHeadX = snake[0].x;
        var snakeHeadY = snake[0].y;
        
-       snakeHeadX++;
+   if (snakeDirection === "Down"){
+        snakeHeadY++;
+    }
+    else {
+        snakeHeadX++;
+    }
        
        var snakeTail = snake.pop();
        snakeTail.x = snakeHeadX;
@@ -83,12 +103,18 @@ function gameLoop(){
        snake.unshift(snakeTail);
    
    }
+   
+   /* ------------------------------------------------------------------------
+    * Food Functions
+    * ------------------------------------------------------------------------
+    */
  
    function foodInitialize(){
        food = {
            x: 0,
            y: 0 
        };
+       setFoodPosition();
        
    }
   
@@ -98,7 +124,16 @@ function gameLoop(){
       
   }
   
+  function setFoodPosition () {
+      var randomX = Math.floor(Math.random() * screenWidth);
+      var randomY = Math.floor(Math.random() * screenHeight);
+      
+      food.x = randomX; 
+      food.y = randomY;
+  }
   
-  
-  
+  function keyboardHandler (event){
+      console.log(event);
+      
+  }
   
