@@ -90,10 +90,10 @@ function gameLoop(){
        var snakeHeadX = snake[0].x;
        var snakeHeadY = snake[0].y;
        
-   if (snakeDirection === "Down"){
+   if(snakeDirection == "down") {
         snakeHeadY++;
     }
-    else {
+    else if (snakeDirection == "right"){
         snakeHeadX++;
     }
        
@@ -132,8 +132,18 @@ function gameLoop(){
       food.y = randomY;
   }
   
+  /* --------------------------------------------------------------------------
+   * Input Functions
+   * --------------------------------------------------------------------------
+   */
   function keyboardHandler (event){
       console.log(event);
       
+      if (event.keyCode == "39"); {
+          snakeDirection = "Right";
+      }
+      else if(event.keyCode == "40"){
+          snakeDirection = "down";  
+      }
   }
   
